@@ -18,9 +18,9 @@ void Hook_RestoreOnDestroy(MiniDetour::Hook_t* hook, bool restore)
     hook->RestoreOnDestroy(restore);
 }
 
-bool Hook_CanHook(MiniDetour::Hook_t* hook, void* hook)
+bool Hook_CanHook(MiniDetour::Hook_t* hook, void* functionToHook)
 {
-    return hook->CanHook(hook);
+    return hook->CanHook(functionToHook);
 }
 
 void* Hook_HookFunction(MiniDetour::Hook_t* hook, void* functionToHook, void* newFunction)
