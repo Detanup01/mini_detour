@@ -15,6 +15,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(MINIDETOUR_DYNAMIC_RUNTIME "Link against dynamic runtime (Windows)" ON)
 option(MINIDETOUR_BUILD_TESTS "Build tests" OFF)
+option(MINIDETOUR_BUILD_SHARED "Build shared" ON)
+
+if(MINIDETOUR_DYNAMIC_RUNTIME)
+  set(LIBRARY_BUILD_TYPE SHARED)
+else()
+  set(LIBRARY_BUILD_TYPE STATIC)
+endif()
 
 set(MINIDETOUR_HEADERS
   ${CMAKE_CURRENT_SOURCE_DIR}/include/mini_detour/mini_detour.h
@@ -109,6 +116,8 @@ set(CAPSTONE_HEADERS
 
 add_library(
   mini_detour
+  ${LIBRARY_BUILD_TYPE}
+  src/mini_detour_export.cpp
   src/mini_detour.cpp
   src/mini_detour_arm.h
   src/mini_detour_arm64.h
@@ -118,6 +127,7 @@ add_library(
   src/mini_detour_macos.h
   src/mini_detour_windows.h
   include/mini_detour/mini_detour.h
+  include/mini_detour/mini_detour_export.h
   
   ${CAPSTONE_HEADERS}
   ${CAPSTONE_SOURCES}
