@@ -9,3 +9,17 @@
 #endif
 
 EXPORT MiniDetour::Hook_t* CreateHook();
+
+EXPORT void DisposeHook(MiniDetour::Hook_t* hook);
+
+EXPORT void Hook_RestoreOnDestroy(MiniDetour::Hook_t* hook, bool restore);
+
+EXPORT bool Hook_CanHook(MiniDetour::Hook_t* hook, void* hook);
+
+EXPORT void* Hook_HookFunction(MiniDetour::Hook_t* hook, void* functionToHook, void* newFunction);
+
+EXPORT void* Hook_RestoreFunction(MiniDetour::Hook_t* hook);
+
+EXPORT void* Hook_GetHookFunction(MiniDetour::Hook_t* hook);
+
+EXPORT void* Hook_GetOriginalFunction(MiniDetour::Hook_t* hook);
