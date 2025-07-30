@@ -2,6 +2,8 @@ cmake_policy(SET CMP0091 NEW)
 cmake_minimum_required(VERSION 3.15)
 project(mini_detour)
 
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 if(APPLE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 endif()
