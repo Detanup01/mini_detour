@@ -15,8 +15,10 @@ jobs:
           platform: x32
         include:
         - os: windows-latest
-          dynamicRuntime: [ON, OFF]
-            
+          dynamicRuntime: ON
+        - os: windows-latest
+          dynamicRuntime: OFF
+                      
     steps:
       - uses: actions/checkout@v4
         with:
