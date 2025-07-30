@@ -2,7 +2,7 @@
 
 #if WIN32
 #define EXPORT extern "C" __declspec( dllexport )
-#elif __GNUC__
+#elif defined(__GNUC__) || defined(__GNUG__)
 #define EXPORT extern "C" __attribute__ ((visibility("default"))) 
 #else
 #define EXPORT extern "C" 
