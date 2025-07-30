@@ -228,7 +228,7 @@ namespace ModuleManipulation {
     size_t RestoreModuleIATs(void* moduleHandle, IATReplaceParameter_t* iatReplaceDetails, size_t iatReplaceDetailsCount);
 }
 
-class Hook_t
+class __declspec( dllexport ) Hook_t
 {
     class HookImpl* _Impl;
 
