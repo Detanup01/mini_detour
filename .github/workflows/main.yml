@@ -92,3 +92,9 @@ jobs:
           #Get-ChildItem -Recurse build
           cd ${{ github.workspace }}\build\Debug
           .\tests.exe
+
+      - name : Upload
+        uses: actions/upload-artifact@v4.3.5
+        with:
+          name: ${{ matrix.os }}-${{ matrix.platform }}
+          path: build/*
