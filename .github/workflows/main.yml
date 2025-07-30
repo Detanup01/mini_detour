@@ -13,6 +13,9 @@ jobs:
         exclude:
         - os: macos-latest
           platform: x32
+        include:
+        - os: windows-latest
+          dynamicRuntime: [ON, OFF]
             
     steps:
       - uses: actions/checkout@v4
@@ -77,7 +80,7 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' && matrix.platform == 'x32' }}
         shell: powershell
         run: |
-          cmake ${{ github.workspace }}\CMakeLists.txt -DCMAKE_BUILD_TYPE=Debug -DMINIDETOUR_BUILD_TESTS=ON -S . -B build -A Win32
+          cmake ${{ github.workspace }}\CMakeLists.txt -DCMAKE_BUILD_TYPE=Debug -DMINIDETOUR_BUILD_TESTS=ON -DMINIDETOUR_DYNAMIC_RUNTIME=${{ matrix.dynamicRuntime }} -S . -B build -A Win32
           cmake --build build
           #Get-ChildItem -Recurse build
           cd ${{ github.workspace }}\build\Debug
@@ -87,7 +90,7 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' && matrix.platform == 'x64' }}
         shell: powershell
         run: |
-          cmake ${{ github.workspace }}\CMakeLists.txt -DCMAKE_BUILD_TYPE=Debug -DMINIDETOUR_BUILD_TESTS=ON -S . -B build -A x64
+          cmake ${{ github.workspace }}\CMakeLists.txt -DCMAKE_BUILD_TYPE=Debug -DMINIDETOUR_BUILD_TESTS=ON -DMINIDETOUR_DYNAMIC_RUNTIME=${{ matrix.dynamicRuntime }} -S . -B build -A x64
           cmake --build build
           #Get-ChildItem -Recurse build
           cd ${{ github.workspace }}\build\Debug
