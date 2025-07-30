@@ -229,9 +229,9 @@ namespace ModuleManipulation {
 }
 
 #if WIN_32
-#define EXPORT __declspec( dllexport )
+#define EXPORT extern "C" __declspec( dllexport )
 #elif GNUC
-#define EXPORT __attribute__ ((visibility("default"))) 
+#define EXPORT extern "C" __attribute__ ((visibility("default"))) 
 #else
 #define EXPORT
 #endif
