@@ -6,14 +6,6 @@
 #include <vector>
 #include <string>
 
-#if WIN32
-#define EXPORT extern "C" __declspec( dllexport )
-#elif GNUC
-#define EXPORT extern "C" __attribute__ ((visibility("default"))) 
-#else
-#define EXPORT extern "C" 
-#endif
-
 namespace MiniDetour {
 namespace MemoryManipulation {
     enum MemoryRights
@@ -236,7 +228,7 @@ namespace ModuleManipulation {
     size_t RestoreModuleIATs(void* moduleHandle, IATReplaceParameter_t* iatReplaceDetails, size_t iatReplaceDetailsCount);
 }
 
-class EXPORT Hook_t
+class Hook_t
 {
     class HookImpl* _Impl;
 
