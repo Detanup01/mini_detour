@@ -119,7 +119,6 @@ set(CAPSTONE_HEADERS
 add_library(
   mini_detour
   ${LIBRARY_BUILD_TYPE}
-  src/mini_detour_export.cpp
   src/mini_detour.cpp
   src/mini_detour_arm.h
   src/mini_detour_arm64.h
@@ -129,7 +128,6 @@ add_library(
   src/mini_detour_macos.h
   src/mini_detour_windows.h
   include/mini_detour/mini_detour.h
-  include/mini_detour/mini_detour_export.h
   
   ${CAPSTONE_HEADERS}
   ${CAPSTONE_SOURCES}
@@ -186,6 +184,17 @@ if(APPLE)
     CXX_VISIBILITY_PRESET hidden
     VISIBILITY_INLINES_HIDDEN ON
   )
+endif()
+
+
+if (MINIDETOUR_BUILD_SHARED)
+   target_sources(
+    mini_detour 
+    PRIVATE
+
+    src/mini_detour_export.cpp
+    include/mini_detour/mini_detour_export.h
+    )
 endif()
 
 if(MINIDETOUR_BUILD_TESTS)
