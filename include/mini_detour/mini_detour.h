@@ -228,7 +228,15 @@ namespace ModuleManipulation {
     size_t RestoreModuleIATs(void* moduleHandle, IATReplaceParameter_t* iatReplaceDetails, size_t iatReplaceDetailsCount);
 }
 
-class __declspec( dllexport ) Hook_t
+#if WIN_32
+#define EXPORT __declspec( dllexport )
+#elif GNUC
+#define EXPORT __attribute__ ((visibility("default"))) 
+#else
+#define EXPORT
+#endif
+
+class EXPORT Hook_t
 {
     class HookImpl* _Impl;
 
